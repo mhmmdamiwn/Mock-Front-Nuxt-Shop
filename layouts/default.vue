@@ -1,10 +1,18 @@
 <template>
-      <div class=" bg-lime-200">
-            <div class="sticky top-0 z-10">
-            <NavBar />
-            <Categories />
-      </div>
+      <div class=" bg-cyan-100 ">
+            <div class="sticky top-0 z-50">
+                  <NavBar />
+                  <!-- <Categories /> -->
+            </div>
 
-      <slot />
+            <slot/>
+            <footer class=" bg-blue-700 ">
+                  Footer 
+            </footer>
       </div>
 </template>
+<style>
+*{
+      color: rgb(56, 54, 54);
+}
+</style>

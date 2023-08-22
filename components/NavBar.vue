@@ -1,10 +1,10 @@
 <template>
-  <nav class="md:hidden bg-slate-200 w-full h-[7vh] ">
-    <div class="flex flex-row h-full items-center justify-evenly">
-      <NavBarLogo/>
+  <nav class="md:hidden bg-slate-200 w-full p-2 ">
+    <div class="flex flex-row items-center justify-evenly">
       <NavBarBasket/>
       <NavBarSearch/>
       <NavBarProfile/>
+      <NavBarLogo/>
     </div>
   </nav>
 </template>
