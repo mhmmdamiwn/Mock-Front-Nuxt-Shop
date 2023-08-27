@@ -24,6 +24,8 @@
     "flowbite": "^1.7.0",
     "flowbite-vue": "^0.0.16",
     "pinia": "^2.1.4",
-    "swiper": "^9.3.2"
+    "sass": "^1.66.1",
+    "swiper": "^9.3.2",
+    "vuetify": "^3.4.0-alpha.0"
   }
 }

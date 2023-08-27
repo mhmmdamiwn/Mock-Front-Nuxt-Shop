@@ -1,5 +1,5 @@
 <template>
-   <div class="flex w-full p-2 gap-1 shadow border-slate-500" dir="rtl">
+   <div class="flex w-full p-2 gap-1 shadow border-slate-500">
       <div class="basis-1/4 ">
          <img :src="getImageUrl(product.avatar)" class=" h-full w-full rounded-md" :alt="product.title">
       </div>
@@ -33,7 +33,7 @@
    </div>
 </template>
 <script setup>
-import { useFiltersStore } from '~/pages/index.vue'
+import { useFiltersStore } from '~/app.vue'
 const props = defineProps({
    product: Object,
    count: Number

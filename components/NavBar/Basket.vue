@@ -12,7 +12,7 @@
   </div>
 </template>
 <script setup>
-import { useFiltersStore } from '~/pages/index.vue'
+import { useFiltersStore } from '~/app.vue'
 const router = useRouter()
 const changeBasketColor = ref(false)
 const filtersStore = useFiltersStore()

@@ -7,11 +7,11 @@
 </template>
 <script setup>
 const props = defineProps({
-    products:Object
+    products:Object,
 })
 const products = ref([])
 products.value = props.products
-watch(props,()=>{
+watch(props.products,()=>{
     products.value = props.products
 })
 </script>

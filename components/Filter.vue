@@ -1,5 +1,5 @@
 <template>
-    <div class=" bg-blue-200 p-2 flex gap-1 items-center" dir="rtl">
+    <div class=" bg-blue-200 p-2 flex gap-2 items-center">
         <div>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                 class="w-6 h-6 border border-blue-500 rounded-md" @click="toggleShowFilter">
@@ -8,27 +8,62 @@
             </svg>
 
         </div>
-        <div class="dropdown" v-show="showFilters">
-            <label tabindex="0" class="flex border-dotted border-b border-t border-black">
-                <h2>
-                    price
-                </h2>
+        <div class="dropdown" v-show="!showFilters">
+            <label tabindex="0" class="flex">
+                <p class=" text-sm">
+                    قیمت
+                </p>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
                 </svg>
             </label>
-            <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                <li><a>Item 1</a></li>
-                <li><a>Item 2</a></li>
+            <ul tabindex="0" class="dropdown-content z-[1] shadow bg-white rounded-box w-68">
+                <li class="mt-6 p-3">
+                    <v-range-slider v-model="value" :min="0" :max="15000000" step="500000"
+                        thumb-label="always"></v-range-slider>
+                </li>
+                <li v-if="value" class="flex gap-1 px-2">
+                    <p>
+                        از
+                    </p>
+                    <p>
+                        {{ String(value[0]).split("").reverse().map((el,i)=>{
+                            if(i%3==0 && i!=0)
+                                return el+','
+                            return el
+                        }).reverse().join("") }}
+                    </p>
+                    <p>
+                        تا
+                    </p>
+                    <p>
+                        {{ String(value[1]).split("").reverse().map((el,i)=>{
+                            if(i%3==0 && i!=0)
+                                return el+','
+                            return el
+                        }).reverse().join("") }}
+                    </p>
+                    <p>
+                        تومان
+                    </p>
+                </li>
+                <li class="flex gap-1 justify-center mb-1">
+                    <button class="border border-black rounded-md p-1" @click="value = null">
+                        بازگردانی
+                    </button>
+                    <button class="border text-white bg-blue-500 rounded-md p-1" @click="filterPrice">
+                        اعمال
+                    </button>
+                </li>
             </ul>
         </div>
-        <div class="dropdown" v-show="showFilters">
-            <label tabindex="0" class="flex border-dotted border-b border-t border-black">
-                <h2>
-                    brand
-                </h2>
+        <div class="dropdown" v-show="!showFilters">
+            <label tabindex="0" class="flex">
+                <p class="text-sm ">
+                    برند
+                </p>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -41,18 +76,22 @@
                     <h2>
                         {{ brand.title }}
                     </h2>
-                    <input type="checkbox" class=" rounded-lg" @change="(e) => filterBrand(brand._id,e)">
+                    <input type="checkbox" class="bg-slate-200 border border-black rounded-lg" @change="(e) => filterBrand(brand._id, e)">
                 </li>
             </ul>
         </div>
-        <div v-show="showFilters" class="flex items-center gap-1 border-dotted border-b border-t border-black">
-            <h2>exist</h2>
-            <input type="checkbox" class=" rounded-lg" v-model="existingProducts">
+        <div class="flex items-center h-4" v-show="!showFilters" >
+            <p class="text-sm">
+                فقط کالا های موجود
+            </p>
+            <v-switch class=""  color="primary" v-model="existingProducts" hide-details></v-switch>
         </div>
     </div>
 </template>
 
 <script setup>
+const value = ref(null);
+
 const emit = defineEmits()
 const props = defineProps({
     brands: Object
@@ -69,15 +108,17 @@ watch(existingProducts, () => {
     emit('existingProducts', existingProducts.value)
 })
 const existingBrands = ref({})
-Object.keys(brands.value).forEach(key=>{
-    if(!Object.keys(existingBrands.value).includes(key)){
+Object.keys(brands.value).forEach(key => {
+    if (!Object.keys(existingBrands.value).includes(key)) {
         existingBrands.value[key] = false
     }
 })
-function filterBrand(_id,event){
+function filterBrand(_id, event) {
     existingBrands.value[_id] = event.target.checked
-    emit('existingBrands',existingBrands.value)
+    emit('existingBrands', existingBrands.value)
 }
-
+function filterPrice() {
+    emit('filterPrice', value.value)
+}
 
 </script>

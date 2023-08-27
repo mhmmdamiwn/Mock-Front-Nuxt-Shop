@@ -1,18 +1,24 @@
 <template>
-      <div class=" bg-cyan-100 ">
+      <div class=" bg-cyan-100 text-black " dir="rtl">
             <div class="sticky top-0 z-50">
                   <NavBar />
                   <!-- <Categories /> -->
             </div>
 
-            <slot/>
+            <slot />
             <footer class=" bg-blue-700 ">
-                  Footer 
+                  Footer
             </footer>
       </div>
 </template>
 <style>
-*{
-      color: rgb(56, 54, 54);
+@font-face {
+    font-family: "IranSans";
+    src: local("Iransans"),
+     url(~/assets/fonts/IranianSans.ttf) format("truetype");
+}
+
+html {
+    font-family: "IranSans";
 }
 </style>

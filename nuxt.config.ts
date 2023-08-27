@@ -6,6 +6,11 @@ modules:[
    '@pinia/nuxt'
 ],
 css:[
-   '@fortawesome/fontawesome-svg-core/styles.css'
-]
+   '@fortawesome/fontawesome-svg-core/styles.css',
+   'vuetify/lib/styles/main.sass'
+],
+build: {
+   transpile: ['vuetify'],
+ },
 })
+  

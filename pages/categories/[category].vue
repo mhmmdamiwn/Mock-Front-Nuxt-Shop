@@ -1,8 +1,8 @@
 <template>
     <div class="">
         <Filter class=" sticky top-10 z-10" @existingProducts="filterExistingProducts" :brands="brands"
-            @existingBrands="filterProductsByBrand" />
-        <VerticalCardHolder class="" :products='productsToBeShown' />
+            @existingBrands="filterProductsByBrand" @filterPrice="filterPrice" />
+        <VerticalCardHolder class="" :products='productsToBeShown'/>
 
     </div>
 </template>
@@ -27,13 +27,16 @@ products.forEach((item) => {
     }
 })
 const productsToBeShown = ref(products)
-const existingBrandProducts = ref()
+
 function filterExistingProducts(arg) {
     productsToBeShown.value = products.filter(item => arg ? item.count > 0 : true)
 }
 function filterProductsByBrand(arg){
     const brands = Object.keys(arg).filter(i=>arg[i]?i:false)
     productsToBeShown.value = products.filter(item => brands.length>0 ? (brands.includes(item.brandId) ? item.brandId:false):true)
+}
+function filterPrice(arg){
+    productsToBeShown.value = products.filter(item=>arg!=null?item.price>=arg[0] && item.price<=arg[1]:true)
 }
 
 

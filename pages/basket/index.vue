@@ -13,7 +13,7 @@
     </div>
 </template>
 <script setup>
-import { useFiltersStore } from '~/pages/index.vue'
+import { useFiltersStore } from '~/app.vue'
 
 const filtersStore = useFiltersStore()
 const { basket } = filtersStore
