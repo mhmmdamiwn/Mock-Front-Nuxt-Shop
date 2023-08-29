@@ -1,5 +1,5 @@
 <template>
-   <div class="flex p-2 shadow">
+   <div class="flex p-2 m-2 rounded-md shadow-md">
       <div class="basis-1/4 ">
          <img :src="getImageUrl(product.avatar)" class=" h-fit w-full rounded-md" :alt="product.title">
       </div>

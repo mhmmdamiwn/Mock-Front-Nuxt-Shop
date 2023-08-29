@@ -11,7 +11,7 @@ const props = defineProps({
 })
 const products = ref([])
 products.value = props.products
-watch(props.products,()=>{
+watch(()=>props.products,()=>{
     products.value = props.products
 })
 </script>

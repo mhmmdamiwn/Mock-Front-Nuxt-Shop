@@ -1,16 +1,28 @@
 <template>
-   <div class=" bg-green-300">
-      <p class=" text-lg me-1">
-      محصولات پرفروش
+   <div class=" mt-6 px-2 py-1 ">
+      <p class=" text-lg">
+         {{ message }}
       </p>
-   <div class="flex h-[50vh] w-full overflow-scroll gap-1 mt-1">
-      <Card class=" min-w-[10rem] rounded-md bg-green-100"/>
-      <Card class=" min-w-[10rem] rounded-md bg-green-100"/>
-      <Card class=" min-w-[10rem] rounded-md bg-green-100"/>
-      <Card class=" min-w-[10rem] rounded-md bg-green-100"/>
-      <Card class=" min-w-[10rem] rounded-md bg-green-100"/>
-
+      <div class="flex overflow-scroll gap-2 mt-1 p-2 scrollbar-hide ">
+         <Card v-for="product in products" :key="product._id" :product="product" />
+      </div>
    </div>
-   </div>
-
 </template>
+<script setup>
+const props = defineProps({
+   products: Object,
+   message: String
+})
+const products = ref([]), message = ref("")
+products.value = props.products
+message.value = props.message
+watch(() => props.products, () => {
+   products.value = props.products
+   message.value = props.message
+})
+</script>
+<style>
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+</style>

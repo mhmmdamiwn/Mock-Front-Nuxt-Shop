@@ -8,7 +8,11 @@
             {{ product.title }}
          </h1>
          <h1>
-            تومان price : {{ product.price }} 
+            قیمت :  {{ product.price.split("").reverse().map((el, i) => {
+                  if (i % 3 == 0 && i != 0)
+                     return el + ','
+                  return el
+               }).reverse().join("") }} تومان
          </h1>
          <div class="flex justify-evenly items-center">
             <div class=" rounded-lg  bg-green-500 text-green-100">
@@ -26,7 +30,7 @@
                </svg>
             </div>
             <div class="w-2/3">
-               <p> count : {{ count }} </p>
+               <p> تعداد :  {{ count }} </p>
             </div>
          </div>
       </div>

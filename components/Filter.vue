@@ -114,6 +114,7 @@ Object.keys(brands.value).forEach(key => {
     }
 })
 function filterBrand(_id, event) {
+    
     existingBrands.value[_id] = event.target.checked
     emit('existingBrands', existingBrands.value)
 }

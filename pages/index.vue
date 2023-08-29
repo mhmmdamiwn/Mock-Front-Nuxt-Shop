@@ -1,9 +1,7 @@
 <template>
-  <Carousel :pictures="pictures" :slide="true" :slide-interval="2000"></Carousel>
+    <Carousel :pictures="pictures" :slide="true" :slide-interval="2000"></Carousel>
 
-  <CardHolder />
-  <CardHolder  />
-  <CardHolder  />
+    <MainPageSuggestedProducts/>
 </template>
 <script>
 import { Carousel } from 'flowbite-vue'

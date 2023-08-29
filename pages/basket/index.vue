@@ -1,26 +1,32 @@
 <template>
-    
-    <CardForBasket v-for="product in productsInBasket" :key="product.product._id" :product="product.product" :count="product.count"/>
-    <div v-if="basket.length <1">
+    <CardForBasket v-for="product in productsInBasket" :key="product.product._id" :product="product.product"
+        :count="product.count" />
+    <div v-if="!changeBasketColor" class=" h-40 flex items-center justify-center">
         <h1>
-            there is nothing in your basket
+            هیج آیتمی در سبد خرید شما موجود نمیباشد
         </h1>
     </div>
-    <div v-else>
-        <h1>
-            totalPrice : {{ totalPrice }}
+    <div v-else class="flex justify-center items-center">
+        <h1 class="m-4">
+            قیمت کل : {{ String(totalPrice).split("").reverse().map((el, i) => {
+                  if (i % 3 == 0 && i != 0)
+                     return el + ','
+                  return el
+               }).reverse().join("") }} تومان
         </h1>
     </div>
 </template>
 <script setup>
 import { useFiltersStore } from '~/app.vue'
-
+import { storeToRefs } from 'pinia'
 const filtersStore = useFiltersStore()
-const { basket } = filtersStore
+const { basket } = storeToRefs(filtersStore)
+const changeBasketColor = ref(false)
+changeBasketColor.value = basket.value.length > 0
+const totalPrice = ref(basket.value.reduce((accumulator, currentValue) => accumulator + parseInt(currentValue.price, 10), 0))
 const productsInBasket = ref({})
-const totalPrice = ref(basket.reduce((accumulator, currentValue) => accumulator + parseInt(currentValue.price, 10), 0))
 function fillProductsInBasket() {
-    basket.forEach((item) => {
+    basket.value.forEach((item) => {
         if (Object.keys(productsInBasket.value).includes(item._id))
             productsInBasket.value[item._id].count++;
         else {
@@ -33,8 +39,9 @@ function fillProductsInBasket() {
 }
 
 fillProductsInBasket()
-watch(basket, () => {
-    totalPrice.value = basket.reduce((accumulator, currentValue) => accumulator + parseInt(currentValue.price, 10), 0)
+watch(basket.value, () => {
+    changeBasketColor.value = basket.value.length > 0
+    totalPrice.value = basket.value.reduce((accumulator, currentValue) => accumulator + parseInt(currentValue.price, 10), 0)
     productsInBasket.value = {}
     fillProductsInBasket()
 })
