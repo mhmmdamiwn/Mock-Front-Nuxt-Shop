@@ -1,11 +1,15 @@
 <template>
-   <div class="flex w-full p-2 gap-1 shadow border-slate-500">
-      <div class="basis-1/4 ">
-         <img :src="getImageUrl(product.avatar)" class=" h-full w-full rounded-md" :alt="product.title">
+   <div class="flex w-full p-2 gap-1 shadow border cursor-pointer"  @click="router.push('product/'+product._id)">
+      <div class="basis-1/3 ">
+         <v-img width="10rem" height="10rem"
+            :src="getImageUrl(product.avatar)"></v-img>
       </div>
-      <div class=" basis-3/4 flex flex-col justify-between p-1">
+      <div class=" basis-2/3 flex flex-col justify-between p-1">
          <h1 class=" font-bold">
             {{ product.title }}
+         </h1>
+         <h1 class=" font-bold">
+           برند :  {{ props.brand }}
          </h1>
          <h1>
             قیمت :  {{ product.price.split("").reverse().map((el, i) => {
@@ -14,20 +18,12 @@
                   return el
                }).reverse().join("") }} تومان
          </h1>
-         <div class="flex justify-evenly items-center">
-            <div class=" rounded-lg  bg-green-500 text-green-100">
-               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                  stroke="currentColor" class="w-7 h-7" @click="addProductToBasket(product)">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                     d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-               </svg>
+         <div class="flex justify-evenly items-center gap-2">
+            <div class=" flex justify-center items-center rounded-lg  bg-attention text-white cursor-pointer">
+               <v-icon @click.stop="addProductToBasket(product)" icon="mdi-plus" />
             </div>
-            <div class=" rounded-lg  bg-red-500 text-green-100">
-               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                  stroke="currentColor" class="w-7 h-7" @click="deleteProductFromBasket(product)">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                     d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
-               </svg>
+            <div class="flex justify-center items-center rounded-lg  bg-red text-white cursor-pointer">
+               <v-icon @click.stop="deleteProductFromBasket(product)" icon="mdi-delete" />
             </div>
             <div class="w-2/3">
                <p> تعداد :  {{ count }} </p>
@@ -40,10 +36,12 @@
 import { useFiltersStore } from '~/app.vue'
 const props = defineProps({
    product: Object,
-   count: Number
+   count: Number,
+   brand: String
 })
 const product = ref({})
 const count = ref(0)
+const router = useRouter()
 product.value = props.product
 count.value = props.count
 

@@ -1,5 +1,5 @@
 <template>
-   <div class="flex flex-col justify-between p-2 border shadow-md rounded-md " @click="router.push('/product/'+product.productId)">
+   <div class="flex flex-col justify-between p-2 border shadow-md rounded-md cursor-pointer " @click="router.push('/product/'+product.productId)">
       <div class="basis-1/2">
          <v-img width="10rem" height="10rem"
             :src="getImageUrl(product.avatar)"></v-img>
@@ -9,12 +9,8 @@
             {{ product.title }}
          </div>
          <div class="flex justify-between items-center gap-2">
-            <div class=" rounded-lg  bg-green-500 text-green-100">
-               <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7"
-                  @click="addProductToBasket(product)">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                     d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-               </svg>
+            <div class="flex justify-center items-center rounded-lg  bg-attention text-white">
+               <v-icon @click.stop="addProductToBasket(product)" icon="mdi-plus" />
             </div>
             <div class="text-sm">
                <p> {{ product.price.split("").reverse().map((el, i) => {

@@ -1,27 +1,29 @@
 <template>
-      <div class="bgColor  text-black " dir="rtl">
+      <div class="bgColor  text-black min-h-[100vh] flex flex-col  " dir="rtl">
             <div class="sticky top-0 z-50">
                   <NavBar />
                   <!-- <Categories /> -->
             </div>
+            <div class=" grow ">
 
-            <slot   />
-            <footer class=" bg-blue-700 ">
-                  Footer
-            </footer>
-            
+                  <slot />
+            </div>
+            <Footer class=" bg-footer" />
+
       </div>
 </template>
 <style>
 @font-face {
-    font-family: "IranSans";
-    src: local("Iransans"),
-     url(~/assets/fonts/IranianSans.ttf) format("truetype");
+      font-family: "IranSans";
+      src: local("Iransans"),
+            url(~/assets/fonts/IRANYekanXFaNum.woff) format("truetype");
 }
-.bgColor{
+
+.bgColor {
       background-color: rgb(255, 253, 246);
 }
+
 html {
-    font-family: "IranSans";
+      font-family: "IranSans";
 }
 </style>

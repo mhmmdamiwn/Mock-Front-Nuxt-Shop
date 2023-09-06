@@ -1,10 +1,15 @@
 <template>
-    <Carousel :pictures="pictures" :slide="true" :slide-interval="2000"></Carousel>
-
-    <MainPageSuggestedProducts/>
+  <!-- <Carousel :pictures="pictures" :slide="true" :slide-interval="2000" ></Carousel> -->
+  <div class=" mx-auto mt-4  md:w-1/2">
+    <v-carousel  cycle :show-arrows="false"  :hide-delimiters="true" progress="blue">
+    <v-carousel-item  v-for="picture in pictures" :key="picture.description" :src="picture.src" cover></v-carousel-item>
+  </v-carousel>
+  </div>
+ 
+  <MainPageSuggestedProducts />
+  <MainPageSuggestedProducts />
 </template>
 <script>
-import { Carousel } from 'flowbite-vue'
 
 export default {
   data() {
@@ -12,9 +17,6 @@ export default {
       baners: [],
       pictures: []
     }
-  },
-  components: {
-    Carousel,
   },
   methods: {
     async getBaners() {
