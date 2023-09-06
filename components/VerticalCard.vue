@@ -1,6 +1,6 @@
 <template>
    <div class="flex p-2 m-2 rounded-md cursor-pointer border shadow-md" @click="router.push('/product/' + product._id)">
-      <div class="basis-1/4 ">
+      <div class="basis-1/4 border shadow ">
          <v-img width="10rem" height="10rem"  :src="getImageUrl(product.avatar)"></v-img>
       </div>
       <div class=" basis-3/4 max-w-[75%]  flex flex-col justify-between p-2">

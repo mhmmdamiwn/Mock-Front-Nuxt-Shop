@@ -1,6 +1,6 @@
 <template>
    <div class="flex w-full p-2 gap-1 shadow border cursor-pointer"  @click="router.push('product/'+product._id)">
-      <div class="basis-1/3 ">
+      <div class="basis-1/3 border shadow border-black rounded-md ">
          <v-img width="10rem" height="10rem"
             :src="getImageUrl(product.avatar)"></v-img>
       </div>
