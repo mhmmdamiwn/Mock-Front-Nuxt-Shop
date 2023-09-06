@@ -54,7 +54,7 @@
         </div>
     </div>
     <div
-        class="w-full md:w-1/2 lg:w-1/3 md:mx-auto md:rounded-md sticky bottom-0  z-40  flex p-2 items-center gap-2 justify-evenly">
+        class="w-full md:w-1/2 lg:w-1/3 md:mx-auto bg-attention md:rounded-md sticky bottom-0  z-40  flex p-2 items-center gap-2 justify-evenly">
         <div @click="addProductToBasket(product)">
             <v-btn elevation="4" color="green">
                 <p class="text-xs">
