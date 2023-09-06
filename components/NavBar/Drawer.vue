@@ -1,11 +1,12 @@
 <template>
-  <div class="border-2 border-white shadow-sm basis-1/12 rounded-md flex justify-center cursor-pointer"
+  <div class="relative">
+  <div class=" border-2 border-white shadow-sm basis-1/12 rounded-md flex justify-center cursor-pointer"
     @click="toggleSideBar">
     <v-icon icon="mdi-menu" />
 
   </div>
 
-  <div class=" absolute right-7 top-10 w-[50vw] md:w-[15vw] bg-color2 rounded-md" :hidden="showSideBar"
+  <div class=" absolute top-8 w-[50vw] md:w-[15vw] bg-color2 rounded-md" :hidden="showSideBar"
     @mouseleave="closeSideBar">
     <div @click="closeSideBar" class=" flex justify-end md:hidden">
       <v-icon class="p-1 border-2 cursor-pointer border-white rounded-md bg-black text-white" icon="mdi-close" />
@@ -14,31 +15,32 @@
       <li @click="router.push('/')">
         <div class="flex">
           <v-icon icon="mdi-home" />
-          <a>خانه</a>
+          <p>خانه</p>
         </div>
       </li>
       <li>
         <div class="flex" @click="showCategories = !showCategories">
           <v-icon icon="mdi-store" />
-          <a>محصولات</a>
+          <p>محصولات</p>
           <v-icon icon="mdi-menu-down" />
         </div>
 
       </li>
       <li v-show="showCategories" v-for="category in categories" :key="category._id"
         @click="router.push(`/categories/${category.title}`)" class=" rounded-md m-1">
-        <a class=" text-sm">
+        <p class=" text-sm">
           {{ category.title }}
-        </a>
+        </p>
       </li>
       <li>
         <div class="flex">
           <v-icon icon="mdi-information" />
-          <a>درباره ما</a>
+          <p>درباره ما</p>
         </div>
       </li>
     </ul>
   </div>
+</div>
 </template>
 
 <script setup>
