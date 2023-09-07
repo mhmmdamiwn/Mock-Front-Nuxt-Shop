@@ -62,7 +62,7 @@
                 </p>
             </v-btn>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-2 text-white">
             <h2 class="text-sm">
                 قیمت :
             </h2>
