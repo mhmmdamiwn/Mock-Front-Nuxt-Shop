@@ -4,18 +4,17 @@
          <v-img width="10rem" height="10rem"  :src="getImageUrl(product.avatar)"></v-img>
       </div>
       <div class=" basis-3/4 max-w-[75%]  flex flex-col justify-between p-2">
-         <div class="flex justify-between">
+         <div class="flex">
             <p class="text-lg font-bold">
                {{ product.title }}
             </p>
-
-            <p class=" text-sm ">
+         </div>
+         <p class=" text-sm ">
                برند: {{ brands.find(el => el._id === product.brandId).title }}
             </p>
-         </div>
-         <p class="text-md max-h-12 text-clip overflow-hidden  ">
+         <!-- <p class="text-md max-h-12 text-clip overflow-hidden  ">
             {{ description }}
-         </p>
+         </p> -->
 
          <div class="flex text-sm self-end underline">
             <p>

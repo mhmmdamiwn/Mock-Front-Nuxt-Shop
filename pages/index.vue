@@ -7,7 +7,6 @@
   </div>
  
   <MainPageSuggestedProducts />
-  <MainPageSuggestedProducts />
 </template>
 <script>
 

@@ -46,7 +46,7 @@
                         تومان
                     </p>
                 </li>
-                <li class="flex gap-1 justify-center mb-1">
+                <li class="flex gap-1 justify-center mb-1 text-black">
                     <button class="border border-black rounded-md p-1" @click="value = null">
                         بازگردانی
                     </button>
