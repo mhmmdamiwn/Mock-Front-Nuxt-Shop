@@ -21,7 +21,7 @@
                     <v-range-slider v-model="value" :min="0" :max="15000000" step="500000"
                         thumb-label="always"></v-range-slider>
                 </li>
-                <li v-if="value" class="flex gap-1 px-2">
+                <li v-if="value" class="flex gap-1 px-2 text-black">
                     <p>
                         از
                     </p>
