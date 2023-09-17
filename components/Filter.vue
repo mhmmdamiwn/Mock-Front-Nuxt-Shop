@@ -11,19 +11,19 @@
         <div class="dropdown" v-show="!showFilters">
             <label tabindex="0" class="flex items-center cursor-pointer">
                 <p class=" text-sm">
-                    قیمت
+                    {{getWord("price")}}
                 </p>
                 <v-icon icon="mdi-cash" />
 
             </label>
-            <ul tabindex="0" class="dropdown-content shadow bg-color2 rounded-box w-68">
+            <ul tabindex="0" class="dropdown-content shadow bg-color2 rounded-box w-64">
                 <li class="mt-6 p-3">
                     <v-range-slider v-model="value" :min="0" :max="15000000" step="500000"
                         thumb-label="always"></v-range-slider>
                 </li>
                 <li v-if="value" class="flex gap-1 px-2 text-black">
                     <p>
-                        از
+                        {{getWord("from")}}
                     </p>
                     <p>
                         {{ String(value[0]).split("").reverse().map((el,i)=>{
@@ -33,7 +33,7 @@
                         }).reverse().join("") }}
                     </p>
                     <p>
-                        تا
+                        {{getWord("to")}}
                     </p>
                     <p>
                         {{ String(value[1]).split("").reverse().map((el,i)=>{
@@ -43,15 +43,15 @@
                         }).reverse().join("") }}
                     </p>
                     <p>
-                        تومان
+                        {{getWord("Toman")}}
                     </p>
                 </li>
                 <li class="flex gap-1 justify-center mb-1 text-black">
                     <button class="border border-black rounded-md p-1" @click="value = null">
-                        بازگردانی
+                        {{getWord("undo")}}
                     </button>
                     <button class="border bg-blue-500 rounded-md p-1" @click="filterPrice">
-                        اعمال
+                        {{ getWord("submit") }}
                     </button>
                 </li>
             </ul>
@@ -59,14 +59,14 @@
         <div class="dropdown" v-show="!showFilters">
             <label tabindex="0" class="flex items-center cursor-pointer">
                 <p class="text-sm ">
-                    برند
+                    {{getWord("brand")}}
                 </p>
                 <v-icon icon="mdi-star-box" />
 
             </label>
             <ul tabindex="0" class="dropdown-content z-[1] p-2 shadow bg-color2 rounded-box">
                 <li v-for="brand in brands" :key="brand" class="gap-1 flex justify-between items-center">
-                    <h2>
+                    <h2 class="text-black">
                         {{ brand.title }}
                     </h2>
                     <input type="checkbox" class="bg-primary border border-black rounded-lg" @change="(e) => filterBrand(brand._id, e)">
@@ -75,7 +75,7 @@
         </div>
         <div class="flex items-center h-4" v-show="!showFilters" >
             <p class="text-sm">
-                فقط کالا های موجود
+            {{ getWord("onlyExistingProducts") }}
             </p>
             <v-switch class=""  color="primary" v-model="existingProducts" hide-details></v-switch>
         </div>
@@ -83,6 +83,9 @@
 </template>
 
 <script setup>
+import { useFiltersStore } from '~/app.vue'
+const state = useFiltersStore()
+const {getWord} = state
 const value = ref(null);
 
 const emit = defineEmits()

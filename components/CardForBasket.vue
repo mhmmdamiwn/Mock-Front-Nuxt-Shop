@@ -9,14 +9,14 @@
             {{ product.title }}
          </h1>
          <h1 class=" font-bold">
-           برند :  {{ props.brand }}
+           {{getWord('brand')}} :  {{ props.brand }}
          </h1>
          <h1>
-            قیمت :  {{ product.price.split("").reverse().map((el, i) => {
+            {{getWord("price")}} :  {{ product.price.split("").reverse().map((el, i) => {
                   if (i % 3 == 0 && i != 0)
                      return el + ','
                   return el
-               }).reverse().join("") }} تومان
+               }).reverse().join("") }} {{getWord("Toman")}}
          </h1>
          <div class="flex justify-evenly items-center gap-2">
             <div class=" flex justify-center items-center rounded-lg  bg-attention text-white cursor-pointer">
@@ -26,7 +26,7 @@
                <v-icon @click.stop="deleteProductFromBasket(product)" icon="mdi-delete" />
             </div>
             <div class="w-2/3">
-               <p> تعداد :  {{ count }} </p>
+               <p> {{getWord("count")}} :  {{ count }} </p>
             </div>
          </div>
       </div>
@@ -50,7 +50,7 @@ function getImageUrl(encodedUrl) {
 }
 
 const filtersStore = useFiltersStore()
-const { addToBasket,deleteFromBasket } = filtersStore
+const { addToBasket,deleteFromBasket,getWord } = filtersStore
 
 function addProductToBasket(product) {
    count.value++

@@ -17,7 +17,7 @@
                   if (i % 3 == 0 && i != 0)
                      return el + ','
                   return el
-               }).reverse().join("") }} تومان</p>
+               }).reverse().join("") }} {{ getWord("Toman") }}</p>
             </div>
          </div>
       </div>
@@ -37,7 +37,7 @@ function getImageUrl(encodedUrl) {
 
 import { useFiltersStore } from '~/app.vue'
 const filtersStore = useFiltersStore()
-const { addToBasket } = filtersStore
+const { addToBasket,getWord } = filtersStore
 
 function addProductToBasket(product) {
    addToBasket(product)

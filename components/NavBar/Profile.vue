@@ -22,7 +22,7 @@
             <v-icon icon="mdi-logout" />
 
             <p class=" text-sm text-rose-600">
-              خروج
+              {{ getWord("logout") }}
             </p>
           </a>
         </v-list-item>
@@ -30,7 +30,7 @@
             <a @click="isShowModal = true" class="flex justify-center items-center gap-1">
               <v-icon icon="mdi-login" />
               <p class=" text-sm">
-                ورود
+                {{getWord("login")}}
               </p>
             </a>
         </v-list-item>
@@ -40,18 +40,18 @@
   <v-dialog v-model="isShowModal" width="auto">
     <v-card>
       <v-card-text class="text-center">
-        ورود به اکانت
+        {{ getWord("loginToYourAccount") }}
       </v-card-text>
       <v-divider :thickness="4"></v-divider>
       <v-card-actions>
         <div class="flex justify-evenly gap-1">
           <button @click="showLogin = true"
             class="text-white bg-attention  rounded-lg border border-attention font-medium px-5 py-2.5 ">
-            ورود
+            {{getWord("login")}}
           </button>
           <button @click="showSignup = true"
             class="text-attention bg-color2  border border-attention  font-medium rounded-lg px-5 py-2.5 text-center">
-            ثبت نام
+            {{ getWord("signup") }}
           </button>
         </div>
       </v-card-actions>
@@ -60,17 +60,17 @@
   <v-dialog v-model="showLogin" persistent width="1024">
     <v-card>
       <v-card-title>
-        <p class="text-h5 text-end">اطلاعات اکانت</p>
+        <p class="text-h5 text-end">{{ getWord("accountInformation") }}</p>
       </v-card-title>
       <v-card-text>
         <v-container>
           <v-row>
             <v-col cols="12" sm="6" md="4">
               <v-text-field v-model="userInformationFromForm.username" :rules="usernameRules"
-                label="نام کاربری"></v-text-field>
+                :label="getWord('username')"></v-text-field>
             </v-col>
             <v-col cols="12" sm="6" md="4">
-              <v-text-field v-model="userInformationFromForm.password" type="password" label="پسورد"></v-text-field>
+              <v-text-field v-model="userInformationFromForm.password" type="password" :label="getWord('password')"></v-text-field>
             </v-col>
           </v-row>
         </v-container>
@@ -78,10 +78,10 @@
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn color="red-darken-1" variant="text" @click="showLogin = false">
-          بستن
+          {{getWord("close")}}
         </v-btn>
         <v-btn color="green-darken-1" variant="text" @click="loginUser">
-          ورود
+          {{getWord("login")}}
         </v-btn>
       </v-card-actions>
     </v-card>
@@ -89,25 +89,25 @@
   <v-dialog v-model="showSignup" persistent width="1024">
     <v-card>
       <v-card-title>
-        <p class="text-h5 text-end">اطلاعات زیر را وارد کنید</p>
+        <p class="text-h5 text-end">{{getWord("fillThisForm")}}</p>
       </v-card-title>
       <v-card-text>
         <v-container>
           <v-row>
             <v-col cols="12" sm="6" md="4">
               <v-text-field v-model="userInformationFromForm.username" :rules="usernameRules"
-                label="نام کاربری"></v-text-field>
+                :label="getWord('username') "></v-text-field>
             </v-col>
             <v-col cols="12" sm="6" md="4">
               <v-text-field v-model="userInformationFromForm.email" type="email" :rules="emailRules"
-                label="ایمیل"></v-text-field>
+                :label="getWord('email')"></v-text-field>
             </v-col>
             <v-col cols="12" sm="6" md="4">
               <v-text-field v-model="userInformationFromForm.mobile" :counter="11" :rules="mobileRules"
-                label="شماره همراه"></v-text-field>
+                :label="getWord('phoneNumber') "></v-text-field>
             </v-col>
             <v-col cols="12" sm="6" md="4">
-              <v-text-field v-model="userInformationFromForm.password" type="password" label="پسورد"></v-text-field>
+              <v-text-field v-model="userInformationFromForm.password" type="password" :label="getWord('password')"></v-text-field>
             </v-col>
 
           </v-row>
@@ -116,10 +116,10 @@
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn color="red-darken-1" variant="text" @click="showSignup = false">
-          بستن
+          {{getWord("close")}}
         </v-btn>
         <v-btn color="green-darken-1" variant="text" @click="signupUser">
-          ثبت نام
+         {{ getWord("signup") }}
         </v-btn>
       </v-card-actions>
     </v-card>
@@ -131,7 +131,7 @@ import { storeToRefs } from 'pinia'
 
 import postRequst from '~/functions/postRequest'
 
-const router = useRouter(), state = useFiltersStore(), { changeStatusToLoggedOut, changeStatusToLoggedIn } = state,
+const router = useRouter(), state = useFiltersStore(), { changeStatusToLoggedOut, changeStatusToLoggedIn,getWord } = state,
   { isLoggedIn, userInformation } = storeToRefs(state), showLogin = ref(false), showSignup = ref(false),
   isShowModal = ref(false)
 

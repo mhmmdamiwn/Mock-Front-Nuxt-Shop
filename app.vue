@@ -6,7 +6,8 @@
 <script>
 
 import { defineStore } from 'pinia'
-
+import eng from './assets/language/eng.json'
+import fa from './assets/language/fa.json'
 export default {
   created() {
     const filtersStore = useFiltersStore()
@@ -33,13 +34,25 @@ export const useFiltersStore = defineStore({
       isLoggedIn: false,
       userInformation: {},
       basket: [],
-      categories: []
+      categories: [],
+      dir : 'rtl'
 }),
   actions: {
     changeStatusToLoggedIn(data) {
       this.isLoggedIn = true
       this.userInformation = data
       window.localStorage.setItem('userInformation', JSON.stringify(this.userInformation))
+    },
+    changeDirection(){
+      this.dir = this.dir === 'rtl' ? 'ltr' : 'rtl'
+    },
+    getWord(word){
+      if(this.dir === 'rtl'){
+        return fa[word]
+      }
+      else{
+        return eng[word]
+      }
     },
     changeStatusToLoggedOut() {
       this.isLoggedIn = false

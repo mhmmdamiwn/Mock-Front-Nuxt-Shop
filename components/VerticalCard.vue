@@ -10,7 +10,7 @@
             </p>
          </div>
          <p class=" text-sm ">
-               برند: {{ brands.find(el => el._id === product.brandId).title }}
+               {{getWord("brand")}} : {{ brands.find(el => el._id === product.brandId).title }}
             </p>
          <!-- <p class="text-md max-h-12 text-clip overflow-hidden  ">
             {{ description }}
@@ -18,7 +18,7 @@
 
          <div class="flex text-sm self-end underline">
             <p>
-               موجودی: {{ product.count }}
+               {{getWord("exist")}} : {{ product.count }}
             </p>
          </div>
 
@@ -32,7 +32,7 @@
                   if (i % 3 == 0 && i != 0)
                      return el + ','
                   return el
-               }).reverse().join("") }} تومان</p>
+               }).reverse().join("") }} {{getWord("Toman")}}</p>
             </div>
          </div>
       </div>
@@ -52,7 +52,7 @@ function getImageUrl(encodedUrl) {
 }
 
 const filtersStore = useFiltersStore()
-const { addToBasket } = filtersStore
+const { addToBasket,getWord } = filtersStore
 const description = computed(() => {
    return product.description
 })

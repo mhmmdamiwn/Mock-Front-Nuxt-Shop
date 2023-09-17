@@ -3,7 +3,7 @@
         <div class="basis-1/2 flex ">
             <div class="basis-1/2">
                 <h1 class="text-about text-lg font-bold md:text-2xl ">
-                    فروشگاه شیرآلات شیراز
+                    {{ getWord("name") }}
                 </h1>
             </div>
             <div class="basis-1/2 flex justify-end items-center gap-6 ">
@@ -28,3 +28,9 @@
     font-size: 0.75rem;
 }
 </style>
+<script setup>
+import { useFiltersStore } from '~/app.vue'
+
+const filtersStore = useFiltersStore()
+const { getWord } = filtersStore
+</script>

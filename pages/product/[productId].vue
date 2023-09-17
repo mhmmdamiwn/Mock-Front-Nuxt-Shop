@@ -8,7 +8,7 @@
                 <div class="">
                     <div class="flex items-center self-start gap-2">
                         <h2 class="text-sm">
-                            نام محصول :
+                            {{ getWord("productName") }}  :
                         </h2>
                         <h1 class="font-bold text-lg self-start">
                             {{ product.title }}
@@ -16,7 +16,7 @@
                     </div>
                     <div class="flex items-center self-start gap-2">
                         <h2 class="text-sm">
-                            در دسته :
+                            {{ getWord("category") }} :
                         </h2>
                         <h1 class="font-bold text-lg self-start underline text-blue-500"
                             @click="router.push(`/categories/${categories.find(el => el._id === product.categoryId).title}`)">
@@ -25,7 +25,7 @@
                     </div>
                     <div class="flex items-center self-start gap-2">
                         <h1 class="text-sm">
-                            برند :
+                            {{getWord("brand")}} :
                         </h1>
                         <h1 class="font-bold text-lg self-start">
                             {{ brands.find(el => el._id === product.brandId).title.toUpperCase() }}
@@ -33,7 +33,7 @@
                     </div>
                     <div class="flex items-center self-start gap-2">
                         <h2 class="text-sm">
-                            موجودی :
+                            {{ getWord("exist") }} :
                         </h2>
                         <h1 class="font-bold text-lg self-start">
                             {{ product.count }}
@@ -45,7 +45,7 @@
 
             <div class="flex flex-col self-start gap-2">
                 <h2 class="text-sm">
-                    توضیحات :
+                    {{getWord("description")}} :
                 </h2>
                 <h1 class="font-bold text-lg self-start w-full whitespace-break-spaces">
                     {{ product.description }}
@@ -58,20 +58,20 @@
         <div @click="addProductToBasket(product)">
             <v-btn elevation="4" color="green">
                 <p class="text-xs">
-                    افزودن به سبد
+                    {{ getWord("addToBasket") }}
                 </p>
             </v-btn>
         </div>
         <div class="flex items-center gap-2 text-white">
             <h2 class="text-sm">
-                قیمت :
+                {{getWord("price")}} :
             </h2>
             <h1 class="font-bold text-lg self-start">
                 {{ product.price.split("").reverse().map((el, i) => {
                     if (i % 3 == 0 && i != 0)
                         return el + ','
                     return el
-                }).reverse().join("") }} تومان
+                }).reverse().join("") }} {{getWord("Toman")}}
             </h1>
         </div>
 
@@ -99,7 +99,7 @@ categories.value = await categoryResponse.json()
 import { useFiltersStore } from '~/app.vue'
 
 const filtersStore = useFiltersStore()
-const { addToBasket } = filtersStore
+const { addToBasket,getWord } = filtersStore
 
 function addProductToBasket(product) {
     addToBasket(product)
@@ -110,5 +110,5 @@ const suggestedProductResponse = await fetch("http://localhost:3000/products/cat
 const suggestedProducts = ref({})
 suggestedProducts.value= await suggestedProductResponse.json()
 suggestedProducts.value = suggestedProducts.value.filter(i=>i._id !== product.value._id)
-const message = 'محصولات مشابه'
+const message = getWord("similiarProducts")
 </script>

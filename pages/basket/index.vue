@@ -7,16 +7,16 @@
 
     <div v-if="!changeBasketColor" class=" h-40 flex items-center justify-center">
         <h1>
-            هیج آیتمی در سبد خرید شما موجود نمیباشد
+            {{ getWord("noItem") }}
         </h1>
     </div>
     <div v-else class="flex justify-center items-center">
         <h1 class="m-4">
-            قیمت کل : {{ String(totalPrice).split("").reverse().map((el, i) => {
+            {{getWord("totalPrice")}} : {{ String(totalPrice).split("").reverse().map((el, i) => {
                 if (i % 3 == 0 && i != 0)
                     return el + ','
                 return el
-            }).reverse().join("") }} تومان
+            }).reverse().join("") }} {{getWord("Toman")}}
         </h1>
     </div>
 </template>
@@ -25,6 +25,7 @@ import { useFiltersStore } from '~/app.vue'
 import { storeToRefs } from 'pinia'
 const filtersStore = useFiltersStore()
 const { basket } = storeToRefs(filtersStore)
+const { getWord} = filtersStore
 const brandResponse = await fetch("http://localhost:3000/brands")
 const brands = await brandResponse.json()
 const changeBasketColor = ref(false), totalPrice = ref(0)

@@ -8,7 +8,7 @@
 
     <div v-show="changeBasketColor"
       :class="{ ' bg-color2 text-attention border-attention transition-all ease-in': changeBasketColor }"
-      class=" border w-4 h-4 text-xs flex justify-center items-center rounded-sm absolute left-6 bottom-4">
+      class=" border w-4 h-4 text-xs flex justify-center items-center rounded-sm absolute end-6 bottom-4">
       {{ basket.length }}
     </div>
   </div>

@@ -6,7 +6,7 @@
       </div>
       <div class=" hidden md:flex text-attention font-bold">
           <h1 class=" whitespace-nowrap">
-            فروشگاه شیرآلات شیراز
+            {{ getWord("name") }}
           </h1>
       </div>
       <NavBarProfile/>
@@ -16,3 +16,9 @@
     </div>
   </nav>
 </template>
+<script setup>
+import { useFiltersStore } from '~/app.vue'
+
+const filtersStore = useFiltersStore()
+const { getWord } = filtersStore
+</script>
