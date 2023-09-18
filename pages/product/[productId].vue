@@ -3,7 +3,7 @@
         <div class="flex flex-col gap-4 mx-4 mt-4 ">
             <div class=" flex flex-col md:flex-row md:gap-4 md:items-center">
                 <div class="w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 self-center ">
-                    <v-img width="100%" class="rounded-md" :src="getImageUrl(product.avatar)"></v-img>
+                    <v-img width="100%" class="rounded-md" :src="product.avatar"></v-img>
                 </div>
                 <div class="">
                     <div class="flex items-center self-start gap-2">
@@ -81,22 +81,17 @@
 <script setup>
 const router = useRouter()
 const route = useRoute()
-const response = await fetch("http://localhost:3000/products/" + route.params.productId)
-const product = ref({})
-product.value = await response.json()
-
-function getImageUrl(encodedUrl) {
-    return `data:image/png;base64,${encodedUrl}`;
-}
-
-const brandResponse = await fetch("http://localhost:3000/brands")
-const brands = await brandResponse.json()
-
-const categories = ref({})
-const categoryResponse = await fetch("http://localhost:3000/categories")
-categories.value = await categoryResponse.json()
-
+import allProducts from "../../assets/statics/products.json"
+import allBrands from "../../assets/statics/brands.json"
+import allCategories from "../../assets/statics/categories.json"
 import { useFiltersStore } from '~/app.vue'
+
+const product = ref({})
+product.value = allProducts
+const brands = allBrands
+const categories = ref({})
+categories.value = allCategories
+
 
 const filtersStore = useFiltersStore()
 const { addToBasket,getWord } = filtersStore
@@ -104,11 +99,8 @@ const { addToBasket,getWord } = filtersStore
 function addProductToBasket(product) {
     addToBasket(product)
 }
-const suggestedProductResponse = await fetch("http://localhost:3000/products/category/?" + new URLSearchParams({
-    categoryTitle : categories.value.find(el => el._id === product.value.categoryId).title
-}))
+
 const suggestedProducts = ref({})
-suggestedProducts.value= await suggestedProductResponse.json()
-suggestedProducts.value = suggestedProducts.value.filter(i=>i._id !== product.value._id)
+suggestedProducts.value = allProducts.filter(i=>i._id !== product.value._id && i.categoryId === product.value.categoryId)
 const message = getWord("similiarProducts")
 </script>

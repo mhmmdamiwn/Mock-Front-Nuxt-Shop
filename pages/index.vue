@@ -1,11 +1,15 @@
 <template>
   <!-- <Carousel :pictures="pictures" :slide="true" :slide-interval="2000" ></Carousel> -->
-  <div class=" mx-auto mt-4  md:w-1/2">
-    <v-carousel  cycle :show-arrows="false"  :hide-delimiters="true" progress="blue">
-    <v-carousel-item  v-for="picture in pictures" :key="picture.description" :src="picture.src" cover></v-carousel-item>
-  </v-carousel>
+  <div class=" mt-4 md:w-3/4 mx-auto" id="carousel">
+    <v-card :max-height="divWidth * 1 / 2">
+      <v-carousel cycle :show-arrows="false" :hide-delimiters="true" progress="blue">
+        <v-carousel-item :max-height="divWidth * 1 / 2" v-for="picture in pictures" :key="picture.description"
+          :src="picture.src"></v-carousel-item>
+      </v-carousel>
+    </v-card>
+
   </div>
- 
+
   <MainPageSuggestedProducts />
 </template>
 <script>
@@ -14,29 +18,34 @@ export default {
   data() {
     return {
       baners: [],
-      pictures: []
+      pictures: [
+        {
+          src: "https://i.ibb.co/VwsPnGt/Untitled.png",
+          alt: "Slide1"
+        }, {
+          src: "https://i.ibb.co/RQnwxfm/Untitled-1.png",
+          alt: "Slide2"
+        },
+        {
+          src: "https://i.ibb.co/4VXCPdP/Untitled-2.png",
+          alt: "Slide3"
+        }
+      ]
     }
   },
   methods: {
-    async getBaners() {
-      const response = await fetch("http://localhost:3000/baners")
-      this.baners = await response.json()
-      this.pictures = this.baners.map((el) => {
-        return {
-          src: this.getImageUrl(el.avatar),
-          alt: el.description
-        }
-      })
-    },
     getImageUrl(encodedUrl) {
       return `data:image/png;base64,${encodedUrl}`;
-    }
-  },
-  mounted() {
-    this.getBaners()
+    },
   },
   setup() {
+    const divWidth = ref(0)
+    onMounted(() => {
+      divWidth.value = document.getElementById("carousel").offsetWidth
+    })
+
     return {
+      divWidth,
     };
   },
 };

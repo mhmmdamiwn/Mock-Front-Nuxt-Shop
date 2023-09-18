@@ -1,0 +1,35 @@
+[
+    {
+        "_id": 1,
+        "title": "Nike Dunk Low",
+        "description": "Created for the hardwood but taken to the streets, the '80s basketball icon returns with classic details and fall colors. Channeling vintage style back onto the streets, its padded, low-cut collar lets you take your game anywhere—in comfort.",
+        "price": "1000000",
+        "discount": 0,
+        "count": 10,
+        "avatar": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/9b26aa8f-0173-409b-b30a-7ce2d88573a4/custom-nike-dunk-low-by-you.png",
+        "categoryId": 1,
+        "brandId": 2
+    },
+    {
+        "_id": 2,
+        "title": "SUPERSTAR XLG SHOES",
+        "description": "REWORKED CLASSIC TRAINERS WITH CONTEMPORARY STYLISTIC DETAILS.When you thought the adidas Superstar shoes could not get any bolder, this pair amplifies the classic '70s trainer for modern fashion. The enlarged proportions and the equally big statement are made apparent with the iconic serrated 3-Stripes. The full leather upper stays true to its vintage roots while reimagining the silhouette to keep things fresh. Take every step in confidence when the shell toe leads the way.",
+        "price": "2000000",
+        "discount": 0,
+        "count": 0,
+        "avatar": "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/53714b65802843f5aaadf841ec4f26cd_9366/Superstar_XLG_Shoes_White_IF9995.jpg",
+        "categoryId": 1,
+        "brandId": 1
+    },
+    {
+        "_id": 3,
+        "title": "New Balance 610 Relaxed Tee",
+        "description": "A classic cotton t-shirt updated with a modern silhouette and a fresh graphic print for effortless style.",
+        "price": "1500000",
+        "discount": 0,
+        "count": 2,
+        "avatar": "https://www.newbalance.com/dw/image/v2/AAGI_PRD/on/demandware.static/-/Library-Sites-NBUS-NBCA/default/dwab4be9ad/images/page-designer/2023/june_2/15471_Comp_X4_Desktop_Image1.jpg",
+        "categoryId": 2,
+        "brandId": 3
+    }
+]

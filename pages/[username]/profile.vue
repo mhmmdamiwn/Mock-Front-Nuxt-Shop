@@ -12,16 +12,14 @@
                                 label="نام کاربری"></v-text-field>
                         </v-col>
                         <v-col cols="12" sm="6" md="4">
-                            <v-text-field :disabled="true" v-model="user.email" type="email" 
-                                label="ایمیل"></v-text-field>
+                            <v-text-field :disabled="true" v-model="user.email" type="email" label="ایمیل"></v-text-field>
                         </v-col>
                         <v-col cols="12" sm="6" md="4">
                             <v-text-field :disabled="disableForm" v-model="user.mobile" :counter="11" :rules="mobileRules"
                                 label="شماره همراه"></v-text-field>
                         </v-col>
                         <v-col cols="12" sm="6" md="4">
-                            <v-textarea :disabled="disableForm" v-model="user.address"
-                                label=" آدرس"></v-textarea>
+                            <v-textarea :disabled="disableForm" v-model="user.address" label=" آدرس"></v-textarea>
                         </v-col>
                     </v-row>
                 </v-container>
@@ -31,7 +29,7 @@
                 <v-btn color="orange-darken-1" variant="text" @click="disableForm = false" v-show="disableForm">
                     ویرایش
                 </v-btn>
-                <v-btn color="green-darken-1" variant="text" @click="editUser" v-show="!disableForm">
+                <v-btn color="green-darken-1" variant="text" @click="editUsers" v-show="!disableForm">
                     ثبت
                 </v-btn>
             </v-card-actions>
@@ -39,13 +37,20 @@
     </div>
 </template>
 <script setup>
+import { useFiltersStore } from '~/app.vue'
+import { storeToRefs } from 'pinia'
+const state = useFiltersStore(), { userInformation, users } = storeToRefs(state), { editUser } = state
 const route = useRoute()
+const router = useRouter()
 const disableForm = ref(true)
 const username = route.params.username;
-const userResponse = await fetch('http://localhost:3000/users/' + username)
+if (username !== userInformation.value.username) {
+    router.push('/')
+}
+
 const user = ref({})
-user.value = await userResponse.json()
-if(!user.value.address){
+user.value = userInformation.value
+if (!user.value.address) {
     user.value.address = null
 }
 
@@ -64,13 +69,12 @@ const mobileRules = [
         return 'enter a valid phone number.'
     }
 ]
-import putRequest from '~~/functions/putRequest';
-async function editUser() {
-    const response = await putRequest('http://localhost:3000/users/'+user.value.username, user.value)
-    const result = await response.json()
-    if (response.status === 200) {
+async function editUsers() {
+    const result = editUser(user.value.username, user.value)
+    if (result !== false) {
         user.value = result
-        disableForm.value =true
+        disableForm.value = true
     }
+
 }
 </script>

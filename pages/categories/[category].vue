@@ -8,17 +8,17 @@
 </template>
 <script setup>
 const route = useRoute();
+import allCategories from "../../assets/statics/categories.json"
+import allBrands from "../../assets/statics/brands.json"
+import allProducts from "../../assets/statics/products.json"
 const categoryTitle = route.params.category
-const response = await fetch("http://localhost:3000/products/category/?" + new URLSearchParams({
-    categoryTitle
-}))
-const products = await response.json()
+const category = allCategories.find((item)=>item.title === categoryTitle)
+const products = allProducts.filter((product)=>product.categoryId === category._id)
 const brands = ref({})
 products.forEach((item) => {
     if (!Object.keys(brands).includes(item.brandId)) {
-        (async () => {
-            const response = await fetch(`http://localhost:3000/brands/${item.brandId}`)
-            const brand = await response.json()
+        (() => {
+            const brand = allBrands.find((brand)=>brand._id === item.brandId)
             brands.value[item.brandId] = {
                 title: brand.title,
                 _id: brand._id

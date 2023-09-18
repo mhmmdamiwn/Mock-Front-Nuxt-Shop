@@ -8,11 +8,10 @@
 import { defineStore } from 'pinia'
 import eng from './assets/language/eng.json'
 import fa from './assets/language/fa.json'
+import allCategories from "./assets/statics/categories.json"
+
 export default {
   created() {
-    const filtersStore = useFiltersStore()
-    const { fillCategories } = filtersStore
-    fillCategories()
     if (process.client) {
       const filtersStore = useFiltersStore()
       const { addToBasket, changeStatusToLoggedIn } = filtersStore
@@ -34,8 +33,9 @@ export const useFiltersStore = defineStore({
       isLoggedIn: false,
       userInformation: {},
       basket: [],
-      categories: [],
-      dir : 'rtl'
+      categories: allCategories,
+      dir : 'rtl',
+      users : []
 }),
   actions: {
     changeStatusToLoggedIn(data) {
@@ -58,10 +58,6 @@ export const useFiltersStore = defineStore({
       this.isLoggedIn = false
       window.localStorage.removeItem('userInformation')
     },
-    async fillCategories() {
-      const response = await fetch('http://localhost:3000/categories')
-      this.categories = await response.json()
-    },
     addToBasket(product,reset=false) {
       if(reset){
         this.basket = product
@@ -76,6 +72,27 @@ export const useFiltersStore = defineStore({
       this.basket.splice(this.basket.indexOf(product), 1)
 
       window.localStorage.setItem('basket', JSON.stringify(this.basket))
+    },
+    addUser(user){
+      const userAlreadyExist = this.users.find(i=>i.username === user.username || i.email === user.email )
+      if(!userAlreadyExist){
+        this.users.push(user)
+        return user
+      }
+      else{
+        return false
+      }
+    },
+    editUser(username,user){
+      if(user.username){
+         const newUser = this.users.find(item=>item.username === user.username)
+         if(!newUser){
+          return false
+       }
+      }
+      const index = this.users.findIndex((item)=>item.username === username)
+      this.users[index] = user
+      return this.users[index]
     }
   },
   getters: {

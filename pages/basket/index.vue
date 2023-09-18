@@ -23,11 +23,11 @@
 <script setup>
 import { useFiltersStore } from '~/app.vue'
 import { storeToRefs } from 'pinia'
+import allBrands from "../../assets/statics/brands.json"
 const filtersStore = useFiltersStore()
 const { basket } = storeToRefs(filtersStore)
 const { getWord} = filtersStore
-const brandResponse = await fetch("http://localhost:3000/brands")
-const brands = await brandResponse.json()
+const brands = allBrands
 const changeBasketColor = ref(false), totalPrice = ref(0)
 const productsInBasket = ref({})
 function fillProductsInBasket() {

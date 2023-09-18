@@ -27,12 +27,12 @@
           </a>
         </v-list-item>
         <v-list-item v-else class=" cursor-pointer">
-            <a @click="isShowModal = true" class="flex justify-center items-center gap-1">
-              <v-icon icon="mdi-login" />
-              <p class=" text-sm">
-                {{getWord("login")}}
-              </p>
-            </a>
+          <a @click="isShowModal = true" class="flex justify-center items-center gap-1">
+            <v-icon icon="mdi-login" />
+            <p class=" text-sm">
+              {{ getWord("login") }}
+            </p>
+          </a>
         </v-list-item>
       </v-list>
     </v-menu>
@@ -47,7 +47,7 @@
         <div class="flex justify-evenly gap-1">
           <button @click="showLogin = true"
             class="text-white bg-attention  rounded-lg border border-attention font-medium px-5 py-2.5 ">
-            {{getWord("login")}}
+            {{ getWord("login") }}
           </button>
           <button @click="showSignup = true"
             class="text-attention bg-color2  border border-attention  font-medium rounded-lg px-5 py-2.5 text-center">
@@ -70,7 +70,8 @@
                 :label="getWord('username')"></v-text-field>
             </v-col>
             <v-col cols="12" sm="6" md="4">
-              <v-text-field v-model="userInformationFromForm.password" type="password" :label="getWord('password')"></v-text-field>
+              <v-text-field v-model="userInformationFromForm.password" type="password"
+                :label="getWord('password')"></v-text-field>
             </v-col>
           </v-row>
         </v-container>
@@ -78,10 +79,10 @@
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn color="red-darken-1" variant="text" @click="showLogin = false">
-          {{getWord("close")}}
+          {{ getWord("close") }}
         </v-btn>
         <v-btn color="green-darken-1" variant="text" @click="loginUser">
-          {{getWord("login")}}
+          {{ getWord("login") }}
         </v-btn>
       </v-card-actions>
     </v-card>
@@ -89,14 +90,14 @@
   <v-dialog v-model="showSignup" persistent width="1024">
     <v-card>
       <v-card-title>
-        <p class="text-h5 text-end">{{getWord("fillThisForm")}}</p>
+        <p class="text-h5 text-end">{{ getWord("fillThisForm") }}</p>
       </v-card-title>
       <v-card-text>
         <v-container>
           <v-row>
             <v-col cols="12" sm="6" md="4">
               <v-text-field v-model="userInformationFromForm.username" :rules="usernameRules"
-                :label="getWord('username') "></v-text-field>
+                :label="getWord('username')"></v-text-field>
             </v-col>
             <v-col cols="12" sm="6" md="4">
               <v-text-field v-model="userInformationFromForm.email" type="email" :rules="emailRules"
@@ -104,10 +105,11 @@
             </v-col>
             <v-col cols="12" sm="6" md="4">
               <v-text-field v-model="userInformationFromForm.mobile" :counter="11" :rules="mobileRules"
-                :label="getWord('phoneNumber') "></v-text-field>
+                :label="getWord('phoneNumber')"></v-text-field>
             </v-col>
             <v-col cols="12" sm="6" md="4">
-              <v-text-field v-model="userInformationFromForm.password" type="password" :label="getWord('password')"></v-text-field>
+              <v-text-field v-model="userInformationFromForm.password" type="password"
+                :label="getWord('password')"></v-text-field>
             </v-col>
 
           </v-row>
@@ -116,10 +118,10 @@
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn color="red-darken-1" variant="text" @click="showSignup = false">
-          {{getWord("close")}}
+          {{ getWord("close") }}
         </v-btn>
         <v-btn color="green-darken-1" variant="text" @click="signupUser">
-         {{ getWord("signup") }}
+          {{ getWord("signup") }}
         </v-btn>
       </v-card-actions>
     </v-card>
@@ -128,11 +130,8 @@
 <script setup>
 import { useFiltersStore } from '~/app.vue'
 import { storeToRefs } from 'pinia'
-
-import postRequst from '~/functions/postRequest'
-
-const router = useRouter(), state = useFiltersStore(), { changeStatusToLoggedOut, changeStatusToLoggedIn,getWord } = state,
-  { isLoggedIn, userInformation } = storeToRefs(state), showLogin = ref(false), showSignup = ref(false),
+const router = useRouter(), state = useFiltersStore(), { changeStatusToLoggedOut, changeStatusToLoggedIn, getWord, addUser } = state,
+  { isLoggedIn, userInformation,users } = storeToRefs(state), showLogin = ref(false), showSignup = ref(false),
   isShowModal = ref(false)
 
 const userInformationFromForm = ref({})
@@ -159,21 +158,22 @@ const mobileRules = [
   }
 ]
 async function signupUser() {
-  const response = await postRequst('http://localhost:3000/users', userInformationFromForm.value)
-  const result = await response.json()
-  if (response.status === 200) {
-    changeStatusToLoggedIn(result)
-    showSignup.value = false
-    isShowModal.value = false
+  const result = addUser(userInformationFromForm.value)
+  console.log(result)
+  if(result){
+  changeStatusToLoggedIn(result)
+  showSignup.value = false
+  isShowModal.value = false
   }
+  
 }
 async function loginUser() {
-  const response = await postRequst('http://localhost:3000/users/login', userInformationFromForm.value)
-  const result = await response.json()
-  if (response.status === 200) {
-    changeStatusToLoggedIn(result)
+    const user = users.value.find((item)=>item.username === userInformationFromForm.value.username && item.password === userInformationFromForm.value.password )
+    if(user){
+    changeStatusToLoggedIn(userInformationFromForm.value)
     showLogin.value = false
     isShowModal.value = false
-  }
+    }
+    
 }
 </script>
