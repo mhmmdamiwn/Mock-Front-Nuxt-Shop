@@ -33,11 +33,6 @@ export default {
       ]
     }
   },
-  methods: {
-    getImageUrl(encodedUrl) {
-      return `data:image/png;base64,${encodedUrl}`;
-    },
-  },
   setup() {
     const divWidth = ref(0)
     onMounted(() => {

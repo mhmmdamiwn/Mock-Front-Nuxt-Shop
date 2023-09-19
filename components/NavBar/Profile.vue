@@ -159,7 +159,6 @@ const mobileRules = [
 ]
 async function signupUser() {
   const result = addUser(userInformationFromForm.value)
-  console.log(result)
   if(result){
   changeStatusToLoggedIn(result)
   showSignup.value = false

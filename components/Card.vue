@@ -1,13 +1,15 @@
 <template>
-   <div class="flex flex-col justify-between p-2 border shadow-md rounded-md cursor-pointer " @click="router.push('/product/'+product.productId)">
-      <div class="basis-1/2 border shadow">
-         <v-img width="10rem" height="10rem"
-            :src="getImageUrl(product.avatar)"></v-img>
+   <div class="flex w-[15rem] flex-col justify-between p-2 border shadow-md rounded-md cursor-pointer " @click="router.push('/product/'+product.productId)">
+      <div class="basis-1/2 max-h-[75%] border shadow flex justify-center ">
+         <v-img height="200" width="200" cover class=" "
+            :src="product.avatar"></v-img>
       </div>
       <div class="m-1">
-         <div class="text-lg text-clip">
+         <div class="text-sm text-clip">
             {{ product.title }}
          </div>
+      </div>
+      <div class="m-1">
          <div class="flex justify-between items-center gap-2">
             <div class="flex justify-center items-center rounded-lg  bg-attention text-white">
                <v-icon @click.stop="addProductToBasket(product)" icon="mdi-plus" />
@@ -30,9 +32,6 @@ const props = defineProps({
 })
 const products = ref([])
 products.value = props.product
-function getImageUrl(encodedUrl) {
-   return `data:image/png;base64,${encodedUrl}`;
-}
 
 
 import { useFiltersStore } from '~/app.vue'

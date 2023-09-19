@@ -33,5 +33,7 @@
     "onlyExistingProducts" : "only existing products",
     "undo" : "undo",
     "from" : "from",
-    "to" : "to"
+    "to" : "to",
+    "aboutMe" : "Created with Nuxt3 using Tailwind, Vuetify, Pinia. This is just a mock project, with fake products and values. This project also have a backoffice panel that admins can add,remove and edit pretty much everything, including categories, brands, products , etc"
+
 }

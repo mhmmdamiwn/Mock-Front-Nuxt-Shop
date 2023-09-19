@@ -11,8 +11,19 @@
         "brandId": 2
     },
     {
+        "_id": 7,
+        "title": "Nike Air Max 270",
+        "description": "Legendary Air gets lifted. Our 1st lifestyle Air Max brings you comfort, bold style and 270 degrees of Air to showcase one of our greatest innovations yet. Add a lightweight, airy upper and a low-cut collar and you've got the perfect got-to kicks for everyday fun.",
+        "price": "7000000",
+        "discount": 0,
+        "count": 10,
+        "avatar": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/97c09bbe-bc1e-4588-ab48-f3444e8f7412/air-max-270-womens-shoes-Pgb94t.png",
+        "categoryId": 1,
+        "brandId": 2
+    },
+    {
         "_id": 2,
-        "title": "SUPERSTAR XLG SHOES",
+        "title": "Superstar XLG",
         "description": "REWORKED CLASSIC TRAINERS WITH CONTEMPORARY STYLISTIC DETAILS.When you thought the adidas Superstar shoes could not get any bolder, this pair amplifies the classic '70s trainer for modern fashion. The enlarged proportions and the equally big statement are made apparent with the iconic serrated 3-Stripes. The full leather upper stays true to its vintage roots while reimagining the silhouette to keep things fresh. Take every step in confidence when the shell toe leads the way.",
         "price": "2000000",
         "discount": 0,
@@ -22,8 +33,30 @@
         "brandId": 1
     },
     {
+        "_id": 5,
+        "title": "Humanrace Samba",
+        "description": "Pharrell Williams leans into adidas heritage and updates the classic Samba shoes. As the most elevated interpretation of the iconic silhouette to date, the Humanrace Samba is created with expert craftsmanship and ultra-premium materials in tonal colorways — all done with a clear nod to the Samba's soccer roots. The shoe features noticeable deviations from the traditional Samba, including high-end leather upper and toe-cap, leather lining, and leather laces.",
+        "price": "1990000",
+        "discount": 0,
+        "count": 15,
+        "avatar": "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/b34a7ef4e05a4fceb7fbf5961342af37_9366/Humanrace_Samba_Shoes_Black_IE7291_011_hover_standard.jpg",
+        "categoryId": 1,
+        "brandId": 1
+    },
+    {
+        "_id": 6,
+        "title": "SAMBA OG",
+        "description": "Born on the pitch, the Samba is a timeless icon of street style. This silhouette stays true to its legacy with a tasteful, low-profile, soft leather upper, suede overlays and gum sole, making it a staple in everyone's closet - on and off the pitch.",
+        "price": "1850000",
+        "discount": 0,
+        "count": 0,
+        "avatar": "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/4c70105150234ac4b948a8bf01187e0c_9366/Samba_OG_Shoes_Black_B75807_01_standard.jpg",
+        "categoryId": 1,
+        "brandId": 1
+    },
+    {
         "_id": 3,
-        "title": "New Balance 610 Relaxed Tee",
+        "title": "610 Relaxed Tee",
         "description": "A classic cotton t-shirt updated with a modern silhouette and a fresh graphic print for effortless style.",
         "price": "1500000",
         "discount": 0,
@@ -31,5 +64,37 @@
         "avatar": "https://www.newbalance.com/dw/image/v2/AAGI_PRD/on/demandware.static/-/Library-Sites-NBUS-NBCA/default/dwab4be9ad/images/page-designer/2023/june_2/15471_Comp_X4_Desktop_Image1.jpg",
         "categoryId": 2,
         "brandId": 3
+    },
+    {
+        "_id": 4,
+        "title": "CLASSICS 3-STRIPES",
+        "description": "Meet your new favorite tee. This classic adidas t-shirt boasts a slim fit and a contrast hem for some refined vintage vibes. Pair it with your favorite dark denim for an effortlessly classic look. It's made of super-soft cotton to keep you comfortable.Our cotton products support more sustainable cotton farming.",
+        "price": "3500000",
+        "discount": 0,
+        "count": 0,
+        "avatar": "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/bf9d73fb98c34984a08caf150099dfe0_9366/Adicolor_Classics_3-Stripes_Tee_Black_IA4845_01_laydown.jpg",
+        "categoryId": 2,
+        "brandId": 1
+    },
+    {
+        "_id": 8,
+        "title": "Messi 44TH Trophy",
+        "description": "One More. But who's counting? Celebrate Lionel Messi adding the League's Cup Trophy to his impressive collection of 44 trophies.",
+        "price": "12000000",
+        "discount": 0,
+        "count": 12,
+        "avatar": "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/a8c702c7f968480c8db148a2ed69e3da_9366/Messi_44th_Trophy_Tee_Black_JE2038_01_laydown.jpg",
+        "categoryId": 2,
+        "brandId": 1
+    },{
+        "_id": 9,
+        "title": "Sportswear Premium Essentials",
+        "description": "Time to elevate your t-shirt collection? This tee answers the call. Heavyweight cotton and a clean, embroidered Futura logo keep it simple for pairing up with any outfit. The oversize fit gives you plenty of extra space for casual style and easy layering",
+        "price": "6300000",
+        "discount": 0,
+        "count": 6,
+        "avatar": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/8b07d0f2-8c31-434b-954b-684e3bf280fa/sportswear-premium-essentials-mens-oversized-t-shirt-S0X6F7.png",
+        "categoryId": 2,
+        "brandId": 2
     }
 ]

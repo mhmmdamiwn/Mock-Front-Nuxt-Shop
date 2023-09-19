@@ -4,9 +4,12 @@
     </div>
 </template>
 <script setup>
+import allProducts from "../../assets/statics/products.json"
 const route = useRoute()
-const response = await fetch("http://localhost:3000/search?"+new URLSearchParams({
-    query: route.params.query
-}))
-const products = await response.json()
+
+const products = allProducts.filter((product)=>{
+    if(product.title.toLowerCase().includes(route.params.query.toLowerCase()) || product.description.toLowerCase().includes(route.params.query.toLowerCase()) ){
+        return product
+    }
+})
 </script>

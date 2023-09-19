@@ -14,13 +14,16 @@ export default {
   created() {
     if (process.client) {
       const filtersStore = useFiltersStore()
-      const { addToBasket, changeStatusToLoggedIn } = filtersStore
+      const { addToBasket, changeStatusToLoggedIn,setDirection } = filtersStore
       const localStorageUserInformation = window.localStorage.getItem('userInformation')
       if (localStorageUserInformation) changeStatusToLoggedIn(JSON.parse(localStorageUserInformation))
       const localStorageBasket = window.localStorage.getItem('basket')
       if (localStorageBasket) {
         addToBasket(JSON.parse(localStorageBasket),true)
       }
+      const localStorageDirection = window.localStorage.getItem('dir')
+      if (localStorageDirection)
+      setDirection(localStorageDirection)
     }
   },
   mounted() {
@@ -43,8 +46,13 @@ export const useFiltersStore = defineStore({
       this.userInformation = data
       window.localStorage.setItem('userInformation', JSON.stringify(this.userInformation))
     },
+    setDirection(direction){
+      this.dir = direction
+      window.localStorage.setItem('dir', this.dir)
+    },
     changeDirection(){
       this.dir = this.dir === 'rtl' ? 'ltr' : 'rtl'
+      window.localStorage.setItem('dir', this.dir)
     },
     getWord(word){
       if(this.dir === 'rtl'){

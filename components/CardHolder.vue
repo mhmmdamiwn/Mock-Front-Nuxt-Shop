@@ -9,6 +9,7 @@
    </div>
 </template>
 <script setup>
+
 const props = defineProps({
    products: Object,
    message: String
@@ -18,6 +19,8 @@ products.value = props.products
 message.value = props.message
 watch(() => props.products, () => {
    products.value = props.products
+})
+watch(() => props.message, () => {
    message.value = props.message
 })
 </script>

@@ -43,7 +43,7 @@
             </div>
 
 
-            <div class="flex flex-col self-start gap-2">
+            <div class="flex flex-col self-start gap-2 mb-4">
                 <h2 class="text-sm">
                     {{getWord("description")}} :
                 </h2>
@@ -66,7 +66,7 @@
             <h2 class="text-sm">
                 {{getWord("price")}} :
             </h2>
-            <h1 class="font-bold text-lg self-start">
+            <h1 class="font-bold text-sm self-start">
                 {{ product.price.split("").reverse().map((el, i) => {
                     if (i % 3 == 0 && i != 0)
                         return el + ','
@@ -76,7 +76,7 @@
         </div>
 
     </div>
-    <CardHolder class="border-t" v-if="suggestedProducts.length>1" :products="suggestedProducts" :message="message"/>
+    <CardHolder class="border-t" v-if="suggestedProducts.length>0" :products="suggestedProducts" :message="message"/>
 </template>
 <script setup>
 const router = useRouter()
@@ -85,15 +85,16 @@ import allProducts from "../../assets/statics/products.json"
 import allBrands from "../../assets/statics/brands.json"
 import allCategories from "../../assets/statics/categories.json"
 import { useFiltersStore } from '~/app.vue'
-
+import { storeToRefs } from 'pinia'
 const product = ref({})
-product.value = allProducts
+product.value = allProducts.find(item=>item._id === parseInt(route.params.productId,10))
 const brands = allBrands
 const categories = ref({})
 categories.value = allCategories
 
 
 const filtersStore = useFiltersStore()
+const { dir } = storeToRefs(filtersStore)
 const { addToBasket,getWord } = filtersStore
 
 function addProductToBasket(product) {
@@ -102,5 +103,10 @@ function addProductToBasket(product) {
 
 const suggestedProducts = ref({})
 suggestedProducts.value = allProducts.filter(i=>i._id !== product.value._id && i.categoryId === product.value.categoryId)
-const message = getWord("similiarProducts")
+const message = ref("")
+message.value=getWord("similiarProducts")
+watch(dir, () => {
+    message.value=getWord("similiarProducts")
+});
+
 </script>

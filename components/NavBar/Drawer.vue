@@ -6,7 +6,7 @@
 
     </div>
 
-    <div class=" absolute top-8 w-[50vw] md:w-[25vw] bg-color2 rounded-md" :hidden="showSideBar"
+    <div class=" absolute top-8 w-[50vw] md:w-[25vw] bg-color2 rounded-md border " :hidden="showSideBar"
       @mouseleave="closeSideBar">
       <div @click="closeSideBar" class=" flex justify-end md:hidden">
         <v-icon class="p-1 border-2 cursor-pointer border-white rounded-md bg-black text-white" icon="mdi-close" />
@@ -31,13 +31,6 @@
           <p class=" text-sm">
             {{ category.title }}
           </p>
-        </li>
-        <li>
-          <div class="flex">
-            <v-icon icon="mdi-information" />
-            <p> {{ getWord("about") }}</p>
-
-          </div>
         </li>
         <li>
           <div class="flex justify-center items-center">

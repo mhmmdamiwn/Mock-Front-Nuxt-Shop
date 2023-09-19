@@ -1,14 +1,14 @@
 <template>
    <div class="flex w-full p-2 gap-1 shadow border cursor-pointer"  @click="router.push('product/'+product._id)">
-      <div class="basis-1/3 border shadow border-black rounded-md ">
-         <v-img width="10rem" height="10rem"
-            :src="getImageUrl(product.avatar)"></v-img>
+      <div class="basis-1/2 max-w-[50%] border shadow border-black rounded-md flex justify-center ">
+         <v-img width="200" height="200" cover
+            :src="product.avatar"></v-img>
       </div>
-      <div class=" basis-2/3 flex flex-col justify-between p-1">
+      <div class="text-sm basis-2/3 flex flex-col justify-between p-1">
          <h1 class=" font-bold">
             {{ product.title }}
          </h1>
-         <h1 class=" font-bold">
+         <h1 class="text-sm ">
            {{getWord('brand')}} :  {{ props.brand }}
          </h1>
          <h1>
@@ -44,10 +44,6 @@ const count = ref(0)
 const router = useRouter()
 product.value = props.product
 count.value = props.count
-
-function getImageUrl(encodedUrl) {
-   return `data:image/png;base64,${encodedUrl}`;
-}
 
 const filtersStore = useFiltersStore()
 const { addToBasket,deleteFromBasket,getWord } = filtersStore
