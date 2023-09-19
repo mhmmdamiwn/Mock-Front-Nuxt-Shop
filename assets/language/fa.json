@@ -34,6 +34,8 @@
     "undo" : "بازگردانی",
     "from" : "از",
     "to" : "تا",
-    "aboutMe" : "Created with Nuxt3 using Tailwind, Vuetify, Pinia. This is just a mock project, with fake products and values. This project also have a backoffice panel that admins can add,remove and edit pretty much everything, including categories, brands, products , etc"
+    "aboutMe" : "Created with Nuxt3 using Tailwind, Vuetify, Pinia. This is just a mock project, with fake products and values. This project also have a backoffice panel that admins can add,remove and edit pretty much everything, including categories, brands, products , etc",
+    "Economy Products" : "محصولات اقتصادی",
+    "New Products": "محصولات جدید"
 
 }
